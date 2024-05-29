@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mouse Events</title>
+    <style>
+        body {
+         font-family: Arial, sans-serif;
+      }
+      .row {
+         padding: 10px;
+         cursor: pointer;
+      }
+      #row2 {
+         font-size: 16px;
+         color: black;
+         background-color: white;
+      }
+      #row3 {
+         background-color: white;
+      }
+      #row4 {
+         background-color: blue;
+      }
+    </style>
+</head>
+<body>
+    <div id="container" onclick="handleEvent(event)">
+        <h1>П'ять подій з мишкою</h1>
+        <div class="row" id="row2">Клацніть на мене мишкою</div>
+        <div class="row" id="row3">На цьому тексті натисніть, потримайте і відпустіть ліву кнопку мишки</div>
+        <div class="row" id="row4">Повільно проведіть курсором мишки по цій написи</div>
+    </div>
+
+    <script>
+        function handleEvent(event) {
+            var target = event.target;
+            var id = target.id;
+            var z1 = document.getElementById(id);
+            
+            switch (id) {
+                case 'row2':
+                  var backgroundColorRow = z1.style.backgroundColor;
+                  z1.style.backgroundColor = (backgroundColorRow !== "blue") ? "blue" : "white";
+                  var fontSizeRow = z1.style.fontSize;
+                  z1.style.fontSize = (fontSizeRow !== "48pt") ? "48pt" : "16px";
+                  var colorRow = z1.style.color;
+                  z1.style.color = (colorRow != "white") ? "white" : "black"
+                    break;
+                case 'row3':
+                  z1.addEventListener('mousedown', function() {
+                     z1.style.backgroundColor = "green";
+                  });
+                  z1.addEventListener('mouseup', function() {
+                     z1.style.backgroundColor = "yellow";
+                  });
+                  break;
+                case 'row4':
+                  z1.addEventListener('mouseenter', function() {
+                     z1.style.backgroundColor = "red";
+                  });
+                  z1.addEventListener('mouseleave', function() {
+                     z1.style.backgroundColor = "blue";
+                  }); 
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
